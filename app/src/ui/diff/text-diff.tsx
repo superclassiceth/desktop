@@ -148,6 +148,7 @@ interface ITextDiffProps {
     diff: ITextDiff,
     diffSelection: DiffSelection
   ) => void
+  readonly askForConfirmationOnDiscardChanges?: boolean
 }
 
 const diffGutterName = 'diff-gutter'
@@ -622,7 +623,7 @@ export class TextDiff extends React.Component<ITextDiffProps, {}> {
     return toPlatformCase(
       `Discard ${numLines > 1 ? 'These' : 'This'} ${hunkType} ${
         numLines > 1 ? 'Lines' : 'Line'
-      }`
+      }${this.props.askForConfirmationOnDiscardChanges ? '…' : ''}`
     )
   }
 
